@@ -17,6 +17,7 @@
     <dependencies>
       <dependency id="netfx-4.8" />
       <dependency id="vcredist140" />
+      <dependency id="dotnet-6.0-desktopruntime" version="6.0.20" />
     </dependencies>
     <packageSourceUrl>https://github.com/iainbrighton/Chocolatey-Packages/tree/master/Citrix-Workspace</packageSourceUrl>
   </metadata>
