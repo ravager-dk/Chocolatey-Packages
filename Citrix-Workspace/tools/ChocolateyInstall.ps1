@@ -2,8 +2,8 @@
 
 <#! PRE-INSTALL-TASKS !#>
 #region version variables
-$version = "2212"
-$Checksum = "c132e32196e5d2ade424d3d37fc62bdd57d8c7f1e7db623c3df955fd9676e5d0";
+$version = "2311"
+$Checksum = "b0084f6ec7d0fb4a8e5a68dd92000e3bd037b7231f62476df97dec059f4074c8";
 $ChecksumType = "sha256";
 #endregion version variables
 
