@@ -3,7 +3,7 @@
 <#! PRE-INSTALL-TASKS !#>
 #region version variables
 $version = "2311"
-$Checksum = "b0084f6ec7d0fb4a8e5a68dd92000e3bd037b7231f62476df97dec059f4074c8";
+$Checksum = "70d5df4d76257453cb9ae386d9a861cda45cc45c9886ee143660ecaf633414c7";
 $ChecksumType = "sha256";
 #endregion version variables
 
@@ -15,7 +15,9 @@ $SourceUrl = "https://www.citrix.com$Link"
 
 #Get downloadlink
 $response = Invoke-WebRequest $SourceUrl
-$downloadlink = "https:" + ($response.Links | where id -eq "downloadcomponent").rel
+$downloadlink = "https:" + ($response.Links | where rel -like "*CitrixWorkspaceApp.exe*")[0].rel
+
+Write-Output $downloadlink
 
 $installChocolateyPackageParams = @{
     PackageName    = "Citrix-Workspace";
