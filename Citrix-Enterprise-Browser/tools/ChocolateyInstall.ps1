@@ -23,7 +23,7 @@ $installChocolateyPackageParams = @{
     FileType       = "EXE";
     SilentArgs     = "--silent";
     Url            = $downloadlink;
-    ValidExitCodes = @(0, 3010, 40008);
+    ValidExitCodes = @(0, 102);
     Checksum       = $Checksum;
     ChecksumType   = $ChecksumType;
 }
