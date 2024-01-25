@@ -42,7 +42,7 @@ Cisco Webex
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>Citrix CEB EnterpriseBrowser Browser</tags>
     <dependencies>
-      <dependency id="citrix-workspace" version="23.9" />
+      <dependency id="citrix-workspace" version="23.11" />
     </dependencies>
     <packageSourceUrl>https://github.com/ravager-dk/Chocolatey-Packages/tree/master/citrix-enterprise-browser</packageSourceUrl>
   </metadata>
