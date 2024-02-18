@@ -1,8 +1,8 @@
 ## Template VirtualEngine.Build ChocolateyInstall.ps1 file for EXE/MSI installations
 
 #region version variables
-$version = "120"
-$Checksum = "E118B29214D57CD6DD65F6854ADCDA1A8C905F824EE21B653D91F8F47666A45E";
+$version = "121"
+$Checksum = "042C7BAF6B1D1E2F4B0DF8D501C89ADC6E53A679515297223CB7FE0E1CCF1E46";
 $ChecksumType = "sha256";
 #endregion version variables
 

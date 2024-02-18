@@ -3,7 +3,7 @@
   <metadata>
     <id>citrix-enterprise-browser</id>
     <title>Citrix Enterprise Browser</title>
-    <version>120.1.1.13</version>
+    <version>121.1.1.9</version>
     <authors>Citrix Systems Inc.</authors>
     <owners>Martin Nygaard Jensen</owners>
     <summary>Citrix Enterprise Browser</summary>
@@ -41,6 +41,7 @@ Cisco Webex
     <licenseUrl>https://www.citrix.com/buy/licensing/agreements.html</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>Citrix CEB EnterpriseBrowser Browser</tags>
+    <docsUrl>https://docs.citrix.com/en-us/citrix-enterprise-browser</docsUrl>
     <dependencies>
       <dependency id="citrix-workspace" version="23.11" />
     </dependencies>
