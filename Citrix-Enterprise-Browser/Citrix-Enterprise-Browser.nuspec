@@ -43,7 +43,7 @@ Cisco Webex
     <tags>Citrix CEB EnterpriseBrowser Browser</tags>
     <docsUrl>https://docs.citrix.com/en-us/citrix-enterprise-browser</docsUrl>
     <dependencies>
-      <dependency id="citrix-workspace" version="23.11" />
+      <dependency id="citrix-workspace" version="23.11.1" />
     </dependencies>
     <packageSourceUrl>https://github.com/ravager-dk/Chocolatey-Packages/tree/master/Citrix-Enterprise-Browser</packageSourceUrl>
   </metadata>
