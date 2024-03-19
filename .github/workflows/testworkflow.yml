@@ -1,0 +1,16 @@
+name: Test workflow
+on:
+    pull_request:
+        branches:
+        - test
+        paths:
+        - 'testfolder/**'
+
+jobs:
+  Test-opentofu-Package:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: 🚨 Test indhold
+        run: type testfolder/juhu.txt
