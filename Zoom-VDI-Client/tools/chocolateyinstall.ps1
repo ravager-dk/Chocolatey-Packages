@@ -12,9 +12,9 @@ $packageArgs = @{
   url64         = $url64
   softwareName  = 'Zoom Client for VDI*'
 
-  checksum      = '37D6292F17B0239EB9065BA57E1B45EE74361D6967670523DA5DB934EE88BAFD'
+  checksum      = '37D6292F17B0239EB9062BA57E1B45EE74361D6967670523DA5DB934EE88BAFD'
   checksumType  = 'sha256'
-  checksum64      = '554A6B370AF06A84F1F45FBF184690A14BDBC378A77C670487038B6836EF3307'
+  checksum64      = '554A6B370AF06A84F1F45FBF184690A11BDBC378A77C670487038B6836EF3307'
   checksumType64  = 'sha256'
 
   silentArgs    = "/qn /norestart /l*v `"$($env:TEMP)\$($packageName).$($env:chocolateyPackageVersion).MsiInstall.log`" DISABLEAUS=TRUE"
