@@ -1,5 +1,7 @@
 ## Template VirtualEngine.Build ChocolateyInstall.ps1 file for EXE/MSI installations
 
+#Citrix uses dynamic download links that expire, likely for telemetry reasons. in some cases they provide direct download links, but not in this case. As a result the script needs to parse the download page to get the current dynamic link.
+
 #region version variables
 $version = "121"
 $Checksum = "042C7BAF6B1D1E2F4B0DF8D501C89ADC6E53A679515297223CB7FE0E1CCF1E46";
