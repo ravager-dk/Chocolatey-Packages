@@ -1,0 +1,21 @@
+name: LM Studio test
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'LM-Studio/**'
+
+jobs:
+  Test-LMStudio-Package:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: 🦺 Install validation extension
+        run: choco install chocolatey-community-validation.extension -y
+      - name: 📦 Pack Chocolatey Package
+        run: choco pack LM-Studio/lm-studio.nuspec
+      - name: 🚀 Install Chocolatey Package
+        run: choco install lm-studio -y --debug --verbose --source "'.;https://community.chocolatey.org/api/v2/'"

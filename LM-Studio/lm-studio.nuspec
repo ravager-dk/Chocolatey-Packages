@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>lm-studio</id>
+    <version>0.3.10.6</version>
+    <packageSourceUrl>https://github.com/ravager-dk/Chocolatey-Packages/tree/master/LM-Studio</packageSourceUrl>
+    <owners>Martin Nygaard Jensen</owners>
+    <title>LM-Studio (Install)</title>
+    <authors>Element Labs, Inc.</authors>
+    <projectUrl>https://lmstudio.ai/</projectUrl>
+    <iconUrl>https://rawcdn.githack.com/ravager-dk/Chocolatey-Packages/783bfa717c2eb12bc599cac2c21f7d22c696847b/LM-Studio/lmstudio.png</iconUrl>
+    <copyright>Element Labs, Inc.</copyright>
+    <licenseUrl>https://lmstudio.ai/terms</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/lmstudio-ai</projectSourceUrl>
+    <docsUrl>https://lmstudio.ai/docs</docsUrl>
+    <bugTrackerUrl>https://github.com/lmstudio-ai/lmstudio-bug-tracker</bugTrackerUrl>
+    <tags>lm-studio lmstudio</tags>
+    <summary>LM Studio</summary>
+    <description>With LM Studio, you can ...
+
+🤖 • Run LLMs on your laptop, entirely offline
+
+📚 • Chat with your local documents (new in 0.3)
+
+👾 • Use models through the in-app Chat UI or an OpenAI compatible local server
+
+📂 • Download any compatible model files from Hugging Face 🤗 repositories
+
+🔭 • Discover new &amp; noteworthy LLMs right inside the app's Discover page</description>
+    <releaseNotes>https://lmstudio.ai/blog/lmstudio-v0.3.10</releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
