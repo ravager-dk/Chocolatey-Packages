@@ -2,7 +2,7 @@
 
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 
-$url        = 'https://github.com/xcp-ng/xenadmin/releases/download/v20.04.01.33/XCP-ng-Center-20.04.01.33.msi'
+$url        = 'https://github.com/xcp-ng/xenadmin/releases/download/v25.04/XCP-ng.Center.msi'
 
 $packageArgs = @{
   packageName   = $env:ChocolateyPackageName
@@ -10,7 +10,7 @@ $packageArgs = @{
   fileType      = 'MSI'
   url           = $url
   softwareName  = 'XCP-ng Center*'
-  checksum      = '29f9c0d5dd738fb8c3e62a5123bb17d5eae1e456adcd11eeb5f3691882753a9d'
+  checksum      = '58B7FF485C821C13FF3EA0D3C75F207680B1DCE51DE00C08AFE805D3E421325D'
   checksumType  = 'sha256'
   silentArgs    = "/qn"
   validExitCodes= @(0, 3010, 1641)
