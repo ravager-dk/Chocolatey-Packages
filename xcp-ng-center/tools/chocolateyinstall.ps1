@@ -2,6 +2,13 @@
 
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 
+$xcpng_old64 = Test-Path -Path "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{45CFD130-100D-4868-BE0C-EA772261E950}"
+$xcpng_old32 = Test-Path -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{45CFD130-100D-4868-BE0C-EA772261E950}"
+
+if ($xcpng_old64 -or $xcpng_old32) {
+  Invoke-Expression -Command (Join-Path -Path $toolsDir -ChildPath "chocolateyuninstall.ps1")
+}
+
 $url        = 'https://github.com/xcp-ng/xenadmin/releases/download/v25.04/XCP-ng.Center.msi'
 
 $packageArgs = @{

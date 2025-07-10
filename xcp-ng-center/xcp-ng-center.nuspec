@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>xcp-ng-center</id>
-    <version>25.04.25119</version>
+    <version>25.04.25119.1</version>
     <owners>Martin Nygaard Jensen</owners>
     <title>XCP-ng Center</title>
     <authors>XCP-ng</authors>
@@ -17,9 +17,7 @@
     <summary>XCP-ng Center</summary>
     <description>XCP-ng Center windows client to manage xenservers and XCP-ng servers. 
 
-**Please Note**: This is an automatically updated package. If you find it is
-out of date by more than a day or two, please contact the maintainer(s) and
-let them know the package is no longer updating correctly.
+**Please Note**: This release does not migrate configuration from previous versions. https://github.com/xcp-ng/xenadmin?tab=readme-ov-file#notice-on-builds-25054-and-up  
 </description>
 <releaseNotes>https://github.com/xcp-ng/xenadmin/releases/tag/v25.04</releaseNotes>
   </metadata>
