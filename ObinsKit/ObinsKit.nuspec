@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>ObinsKit</id>
-    <version>1.2.11</version>
+    <version>1.2.11.1</version>
     <title>ObinsKit</title>
     <authors>Hexcore</authors>
     <owners>Martin Nygaard Jensen</owners>
