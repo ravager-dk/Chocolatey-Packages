@@ -6,12 +6,12 @@ The extension has been downloaded from their official download link listed on ht
 and can be verified like this:
 
 1. Download the release tagged with the corresponding choco package version:
-  32-Bit: <https://github.com/opentofu/opentofu/releases/download/v1.11.0-rc1/tofu_1.11.0-rc1_windows_386.zip>
-  64-Bit: <https://github.com/opentofu/opentofu/releases/download/v1.11.0-rc1/tofu_1.11.0-rc1_windows_amd64.zip>
+  32-Bit: <https://github.com/opentofu/opentofu/releases/download/v1.11.0-rc2/tofu_1.11.0-rc2_windows_386.zip>
+  64-Bit: <https://github.com/opentofu/opentofu/releases/download/v1.11.0-rc2/tofu_1.11.0-rc2_windows_amd64.zip>
 2. You can use one of the following methods to obtain the checksum
   - Use powershell function 'Get-Filehash'
   - Use chocolatey utility 'checksum.exe'
 
   checksum type: sha256
-  checksum32: 5BBF1D6E3833D9BA3E99C449002F988FD7FCDF9E7128EEAF2FE3F6E34E49861D
-  checksum64: CBA3D56717226BF6DC8A126874178F214E664FCC8786BAF2C74724985CD8B531
+  checksum32: 63FA044196CF28BCA8E6D0C1EA1AA2A20717FFE1B873C31C9160F2E48C98F11F
+  checksum64: C0D3DB36387CE087631CF4C5031A8DEAE5ADE1653985976473451E899F9C3193
