@@ -82,7 +82,21 @@ jobs:
         run: ${{ steps.find-python.outputs.python_exe }} --version
       - name: ✅ Verify curator CLI is available
         run: ${{ steps.find-python.outputs.python_exe }} -m pip list | findstr elasticsearch-curator
-      - name: 🧪 Test curator CLI help command
-        run: curator --help
+      - name: 🧪 Find and test curator CLI
+        run: |
+          $pythonExe = "${{ steps.find-python.outputs.python_exe }}"
+          $pythonDir = Split-Path -Parent $pythonExe
+          
+          # Check Scripts directory for curator.exe (where pip installs console scripts)
+          $curatorExe = Join-Path $pythonDir 'Scripts' | Join-Path -ChildPath 'curator.exe'
+          
+          if (Test-Path $curatorExe) {
+              Write-Host "Found curator at: $curatorExe"
+              & $curatorExe --help
+          } else {
+              # Fallback: try using python -m curator.cli
+              Write-Host "curator.exe not found, trying python -m curator.cli"
+              & $pythonExe -m curator.cli --help
+          }
 
 
