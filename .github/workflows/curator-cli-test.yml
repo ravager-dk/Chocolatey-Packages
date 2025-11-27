@@ -24,7 +24,7 @@ jobs:
       - name: ✅ Verify Python 3.10+ is installed
         run: python --version
       - name: ✅ Verify curator CLI is available
-        run: python -m pip list | findstr curator || echo "Curator CLI installed from source"
+        run: python -m pip list | findstr curator
       - name: 🧪 Test curator CLI help command
         run: python -m curator --help
 
