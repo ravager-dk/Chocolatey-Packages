@@ -21,7 +21,7 @@
 Essential for DevOps engineers managing large-scale Elasticsearch deployments, Curator automates routine index management tasks including index retention, rollover, snapshotting, and more.</description>
     <releaseNotes>https://github.com/elastic/curator/releases/tag/v9.0.0</releaseNotes>
     <dependencies>
-      <dependency id="python" version="[3.10]" />
+      <dependency id="python" version="3.10" />
     </dependencies>
   </metadata>
   <files>
