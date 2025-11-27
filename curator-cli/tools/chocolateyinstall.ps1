@@ -15,6 +15,9 @@ $packageArgs = @{
 # Extract the source
 Install-ChocolateyZipPackage @packageArgs
 
+# Refresh environment to pick up Python installation
+Update-SessionEnvironment
+
 # Use Windows py.exe launcher to find and use Python 3.10+
 Write-Host "Installing curator from source..."
 & py -3.10+ -m pip install $sourceDir
