@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>curator-cli</id>
-    <version>8.3.2</version>
+    <version>9.0.0</version>
     <packageSourceUrl>https://github.com/ravager-dk/Chocolatey-Packages/tree/master/curator-cli</packageSourceUrl>
     <owners>Martin Nygaard Jensen</owners>
     <title>Curator CLI</title>
@@ -19,7 +19,7 @@
     <description>Curator is a Python CLI tool that simplifies managing Elasticsearch indices. It allows administrators to curate, delete, optimize, and manage Elasticsearch indices in a time-series fashion.
 
 Essential for DevOps engineers managing large-scale Elasticsearch deployments, Curator automates routine index management tasks including index retention, rollover, snapshotting, and more.</description>
-    <releaseNotes>https://github.com/elastic/curator/releases/tag/v8.3.2</releaseNotes>
+    <releaseNotes>https://github.com/elastic/curator/releases/tag/v9.0.0</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
