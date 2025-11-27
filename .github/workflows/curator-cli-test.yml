@@ -21,10 +21,31 @@ jobs:
         run: choco info curator-cli.nupkg
       - name: 📥 Install curator-cli package
         run: choco install curator-cli -y --source "'.;https://community.chocolatey.org/api/v2/'"
-      - name: ✅ Verify Python 3.10+ is installed
-        run: python --version
+      - name: ✅ Find Python 3.10+ installation
+        id: find-python
+        run: |
+          $pythonDirs = Get-ChildItem -Path 'C:\Python*' -Directory -ErrorAction SilentlyContinue | 
+              Where-Object { $_.Name -match 'Python3\.\d+' } | 
+              Sort-Object Name -Descending
+          
+          foreach ($dir in $pythonDirs) {
+              $pythonPath = Join-Path $dir.FullName 'python.exe'
+              if (Test-Path $pythonPath) {
+                  $version = & $pythonPath --version 2>&1
+                  if ($version -match 'Python 3\.(\d+)' -and [int]$matches[1] -ge 10) {
+                      Write-Host "Found Python 3.10+: $version at $pythonPath"
+                      echo "python_exe=$pythonPath" >> $env:GITHUB_OUTPUT
+                      exit 0
+                  }
+              }
+          }
+          Write-Host "ERROR: Python 3.10+ not found"
+          exit 1
+      - name: ✅ Verify Python version
+        run: ${{ steps.find-python.outputs.python_exe }} --version
       - name: ✅ Verify curator CLI is available
-        run: python -m pip list | findstr curator
+        run: ${{ steps.find-python.outputs.python_exe }} -m pip list | findstr curator
       - name: 🧪 Test curator CLI help command
-        run: python -m curator --help
+        run: ${{ steps.find-python.outputs.python_exe }} -m curator --help
+
 
