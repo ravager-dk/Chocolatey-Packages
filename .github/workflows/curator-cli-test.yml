@@ -81,8 +81,8 @@ jobs:
       - name: ✅ Verify Python version
         run: ${{ steps.find-python.outputs.python_exe }} --version
       - name: ✅ Verify curator CLI is available
-        run: ${{ steps.find-python.outputs.python_exe }} -m pip list | findstr curator
+        run: ${{ steps.find-python.outputs.python_exe }} -m pip list | findstr elasticsearch-curator
       - name: 🧪 Test curator CLI help command
-        run: ${{ steps.find-python.outputs.python_exe }} -m curator --help
+        run: curator --help
 
 
