@@ -1,0 +1,22 @@
+name: qztray publish
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - 'qztray/**'
+
+jobs:
+  Publish-qztray-Package:
+    runs-on: windows-latest
+    steps:
+      - run: echo 'The triggering workflow passed'
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: 📦 Pack Chocolatey Package
+        run: choco pack qztray/qztray.nuspec
+      - name: 🔐 Set Chocolatey API-KEY
+        run: choco apikey --api-key ${{ secrets.API_KEY }} -source https://push.chocolatey.org/
+      - name: 🚀 Push Chocolatey Package
+        run: choco push -source https://push.chocolatey.org/

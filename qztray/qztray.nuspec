@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>qztray</id>
+    <version>2.2.5</version>
+    <packageSourceUrl>https://github.com/ravager-dk/Chocolatey-Packages/tree/master/qztray</packageSourceUrl>
+    <owners>Martin Nygaard Jensen</owners>
+    <title>QZ Tray</title>
+    <authors>Tres Finocchiaro, Jeries Alfakhousi</authors>
+    <projectUrl>https://qz.io/</projectUrl>
+    <iconUrl>https://rawcdn.githack.com/qzind/tray/master/src/qz/resources/qz-icon.png</iconUrl>
+    <licenseUrl>https://github.com/qzind/tray/blob/master/LICENSE.txt</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/qzind/tray</projectSourceUrl>
+    <docsUrl>https://qz.io/wiki/</docsUrl>
+    <bugTrackerUrl>https://github.com/qzind/tray/issues</bugTrackerUrl>
+    <tags>printing barcode label receipt hardware printer</tags>
+    <summary>Print labels, barcodes, receipts and more from web browsers</summary>
+    <description>QZ Tray is a browser-based printing solution that enables direct printing of labels, barcodes, receipts, and other documents from web applications. It works seamlessly with HTML, JavaScript, and Java, eliminating the need for complex legacy printing systems.
+
+Perfect for retail, warehouse, and enterprise environments that need reliable, programmable direct printing capabilities from web applications.</description>
+    <releaseNotes>https://github.com/qzind/tray/releases/tag/v2.2.5</releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>

@@ -1,0 +1,21 @@
+name: qztray test
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'qztray/**'
+
+jobs:
+  Test-qztray-Package:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: 🦺 Install validation extension
+        run: choco install chocolatey-community-validation.extension -y
+      - name: 📦 Pack Chocolatey Package
+        run: choco pack qztray/qztray.nuspec
+      - name: 📝 Validate Package
+        run: choco info qztray.nupkg
