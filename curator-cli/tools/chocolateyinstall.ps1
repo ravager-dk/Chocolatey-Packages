@@ -17,7 +17,7 @@ Install-ChocolateyZipPackage @packageArgs
 
 # Install curator via pip from the extracted source
 Write-Host "Installing curator from source..."
-& python -m pip install --upgrade pip setuptools wheel | Out-Null
+#& python -m pip install --upgrade pip setuptools wheel | Out-Null
 & python -m pip install $sourceDir | Out-Null
 
 if ($LASTEXITCODE -ne 0) {
