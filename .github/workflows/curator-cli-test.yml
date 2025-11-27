@@ -25,7 +25,7 @@ jobs:
         id: find-python
         run: |
           $pythonDirs = Get-ChildItem -Path 'C:\Python*' -Directory -ErrorAction SilentlyContinue | 
-              Where-Object { $_.Name -match 'Python3\.\d+' } | 
+              Where-Object { $_.Name -match 'Python3\d+' } | 
               Sort-Object Name -Descending
           
           foreach ($dir in $pythonDirs) {
