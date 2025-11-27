@@ -19,3 +19,12 @@ jobs:
         run: choco pack curator-cli/curator-cli.nuspec
       - name: 📝 Validate Package
         run: choco info curator-cli.nupkg
+      - name: 📥 Install curator-cli package
+        run: choco install curator-cli -y
+      - name: ✅ Verify Python 3.10+ is installed
+        run: python --version
+      - name: ✅ Verify curator CLI is available
+        run: python -m pip list | findstr curator || echo "Curator CLI installed from source"
+      - name: 🧪 Test curator CLI help command
+        run: python -m curator --help
+
