@@ -1,0 +1,21 @@
+name: curator_cli test
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'curator-cli/**'
+
+jobs:
+  Test-curator_cli-Package:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: 🦺 Install validation extension
+        run: choco install chocolatey-community-validation.extension -y
+      - name: 📦 Pack Chocolatey Package
+        run: choco pack curator-cli/curator-cli.nuspec
+      - name: 📝 Validate Package
+        run: choco info curator-cli.nupkg
