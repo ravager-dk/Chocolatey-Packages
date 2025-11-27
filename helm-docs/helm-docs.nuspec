@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>helm-docs</id>
+    <version>1.14.2</version>
+    <packageSourceUrl>https://github.com/ravager-dk/Chocolatey-Packages/tree/master/helm-docs</packageSourceUrl>
+    <owners>Martin Nygaard Jensen</owners>
+    <title>Helm Docs</title>
+    <authors>Helm Docs Contributors</authors>
+    <projectUrl>https://github.com/norwoodj/helm-docs</projectUrl>
+    <iconUrl>https://rawcdn.githack.com/norwoodj/helm-docs/main/img/helm-docs.png</iconUrl>
+    <licenseUrl>https://github.com/norwoodj/helm-docs/blob/main/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/norwoodj/helm-docs</projectSourceUrl>
+    <docsUrl>https://github.com/norwoodj/helm-docs/blob/main/README.md</docsUrl>
+    <bugTrackerUrl>https://github.com/norwoodj/helm-docs/issues</bugTrackerUrl>
+    <tags>kubernetes helm documentation cli</tags>
+    <summary>Helm-docs automatically generates helm template help file</summary>
+    <description>Helm-docs automatically generates helm template help file to aid in referencing options with helm templates. It searches a helm chart directory for a metadata file which contains documentation about a helm chart and creates a README.md file based on that metadata.
+
+This tool is particularly useful for DevOps engineers and Kubernetes operators managing Helm charts, as it simplifies documentation generation and keeps documentation in sync with chart updates.</description>
+    <releaseNotes>https://github.com/norwoodj/helm-docs/releases/tag/v1.14.2</releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
