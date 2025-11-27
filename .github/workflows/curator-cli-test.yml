@@ -21,19 +21,23 @@ jobs:
         run: choco info curator-cli.nupkg
       - name: 📥 Install curator-cli package
         run: choco install curator-cli -y --source "'.;https://community.chocolatey.org/api/v2/'"
-      - name: ✅ Verify Python 3.10+ and curator CLI
+      - name: ✅ Verify Python and curator CLI
         run: |
           # Reload environment to pick up newly installed curator
           $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
           
+          # Find the latest available Python version
+          $pythonExe = (py --list-paths 2>$null | Select-Object -First 1 | ForEach-Object { $_ -replace '.*\s+(.*)$', '$1' })
+          Write-Host "Using Python: $pythonExe"
+          
           # Verify Python version
-          py -3.10+ --version
+          & $pythonExe --version
           
           # Verify curator is installed
-          py -3.10+ -m pip list | findstr elasticsearch-curator
+          & $pythonExe -m pip list | findstr elasticsearch-curator
           
           # Test curator CLI - use absolute path from Python scripts directory
-          $pythonScriptsPath = (py -3.10+ -c "import site; print(site.USER_SCRIPTS)" | ForEach-Object { $_.Trim() })
+          $pythonScriptsPath = (& $pythonExe -c "import site; print(site.USER_SCRIPTS)" | ForEach-Object { $_.Trim() })
           & "$pythonScriptsPath\curator.exe" --help
 
 

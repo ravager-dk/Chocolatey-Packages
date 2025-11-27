@@ -18,9 +18,15 @@ Install-ChocolateyZipPackage @packageArgs
 # Refresh environment to pick up Python installation
 Update-SessionEnvironment
 
-# Use Windows py.exe launcher to find and use Python 3.10+
+# Find the latest available Python version
 Write-Host "Installing curator from source..."
-& py -3.10+ -m pip install $sourceDir
+$pythonExe = (py --list-paths 2>$null | Select-Object -First 1 | ForEach-Object { $_ -replace '.*\s+(.*)$', '$1' })
+
+if (-not $pythonExe) {
+    throw "No Python installation found"
+}
+
+& $pythonExe -m pip install $sourceDir
 
 if ($LASTEXITCODE -ne 0) {
     throw "Failed to install curator CLI"
