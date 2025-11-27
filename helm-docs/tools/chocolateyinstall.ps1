@@ -11,9 +11,16 @@ $tarGzFile = Join-Path $tempDir 'helm-docs.tar.gz'
 # Download the file
 Get-ChocolateyWebFile -PackageName 'helm-docs' -FileFullPath $tarGzFile -Url $url -Checksum $checksum -ChecksumType 'sha256'
 
-# Extract tar.gz using 7z
-7z x $tarGzFile -o"$tempDir" | Out-Null
-7z x (Join-Path $tempDir 'helm-docs_*.tar') -o"$toolsDir" | Out-Null
+# Extract tar.gz using 7z (first extract gzip to get tar, then extract tar)
+$extractOutput = & 7z x $tarGzFile -o"$tempDir" -y
+if ($LASTEXITCODE -ne 0) { throw "Failed to extract tar.gz" }
+
+# Find and extract the tar file
+$tarFile = Get-ChildItem $tempDir -Filter "*.tar" | Select-Object -First 1
+if ($null -eq $tarFile) { throw "No tar file found after extracting tar.gz" }
+
+$extractOutput = & 7z x $tarFile.FullName -o"$toolsDir" -y
+if ($LASTEXITCODE -ne 0) { throw "Failed to extract tar file" }
 
 # Cleanup temp files
 Remove-Item $tempDir -Recurse -Force -ErrorAction SilentlyContinue
