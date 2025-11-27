@@ -21,82 +21,18 @@ jobs:
         run: choco info curator-cli.nupkg
       - name: 📥 Install curator-cli package
         run: choco install curator-cli -y --source "'.;https://community.chocolatey.org/api/v2/'"
-      - name: ✅ Find Python 3.10+ installation
-        id: find-python
+      - name: ✅ Verify Python 3.10+ and curator CLI
         run: |
-          # Search multiple possible Python installation locations
-          $searchPaths = @(
-              'C:\Python*',
-              'C:\hostedtoolcache\windows\Python\*'
-          )
+          # Reload environment to pick up newly installed curator
+          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
           
-          $pythonExe = $null
+          # Verify Python version
+          py -3.10+ --version
           
-          foreach ($searchPath in $searchPaths) {
-              $pythonDirs = Get-ChildItem -Path $searchPath -Directory -ErrorAction SilentlyContinue | 
-                  Sort-Object Name -Descending
-              
-              foreach ($dir in $pythonDirs) {
-                  $pythonPath = Join-Path $dir.FullName 'python.exe'
-                  if ($null -eq $pythonPath) { $pythonPath = Join-Path $dir.FullName 'x64' | Join-Path -ChildPath 'python.exe' }
-                  
-                  if (Test-Path $pythonPath) {
-                      $version = & $pythonPath --version 2>&1
-                      if ($version -match 'Python 3\.(\d+)' -and [int]$matches[1] -ge 10) {
-                          Write-Host "Found Python 3.10+: $version at $pythonPath"
-                          echo "python_exe=$pythonPath" >> $env:GITHUB_OUTPUT
-                          exit 0
-                      }
-                  }
-                  
-                  # Also check x64 subdirectory
-                  $x64Path = Join-Path $dir.FullName 'x64' | Join-Path -ChildPath 'python.exe'
-                  if (Test-Path $x64Path) {
-                      $version = & $x64Path --version 2>&1
-                      if ($version -match 'Python 3\.(\d+)' -and [int]$matches[1] -ge 10) {
-                          Write-Host "Found Python 3.10+: $version at $x64Path"
-                          echo "python_exe=$x64Path" >> $env:GITHUB_OUTPUT
-                          exit 0
-                      }
-                  }
-              }
-          }
-          Write-Host "ERROR: Python 3.10+ not found in standard locations"
-          Write-Host "Searching all subdirectories for python.exe..."
-          $foundPython = Get-ChildItem -Path 'C:\' -Recurse -Filter 'python.exe' -ErrorAction SilentlyContinue | 
-              Where-Object { $_.FullName -match '3\.1[4-9]|3\.[2-9]\d' } | 
-              Select-Object -First 1
+          # Verify curator is installed
+          py -3.10+ -m pip list | findstr elasticsearch-curator
           
-          if ($foundPython) {
-              Write-Host "Found python.exe at: $($foundPython.FullName)"
-              $version = & $foundPython.FullName --version 2>&1
-              if ($version -match 'Python 3\.(\d+)' -and [int]$matches[1] -ge 10) {
-                  echo "python_exe=$($foundPython.FullName)" >> $env:GITHUB_OUTPUT
-                  exit 0
-              }
-          }
-          
-          Write-Host "ERROR: Python 3.10+ not found anywhere"
-          exit 1
-      - name: ✅ Verify Python version
-        run: ${{ steps.find-python.outputs.python_exe }} --version
-      - name: ✅ Verify curator CLI is available
-        run: ${{ steps.find-python.outputs.python_exe }} -m pip list | findstr elasticsearch-curator
-      - name: 🧪 Find and test curator CLI
-        run: |
-          $pythonExe = "${{ steps.find-python.outputs.python_exe }}"
-          $pythonDir = Split-Path -Parent $pythonExe
-          
-          # Check Scripts directory for curator.exe (where pip installs console scripts)
-          $curatorExe = Join-Path $pythonDir 'Scripts' | Join-Path -ChildPath 'curator.exe'
-          
-          if (Test-Path $curatorExe) {
-              Write-Host "Found curator at: $curatorExe"
-              & $curatorExe --help
-          } else {
-              # Fallback: try using python -m curator.cli
-              Write-Host "curator.exe not found, trying python -m curator.cli"
-              & $pythonExe -m curator.cli --help
-          }
+          # Test curator CLI
+          curator --help
 
 
