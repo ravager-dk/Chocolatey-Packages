@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>portals</id>
+    <version>1.0.0</version>
+    <packageSourceUrl>https://github.com/ravager-dk/Chocolatey-Packages/tree/master/portals</packageSourceUrl>
+    <owners>Martin Nygaard Jensen</owners>
+    <title>Portals</title>
+    <authors>Portals Contributors</authors>
+    <projectUrl>https://github.com/portals-me/portals</projectUrl>
+    <licenseUrl>https://github.com/portals-me/portals/blob/main/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/portals-me/portals</projectSourceUrl>
+    <docsUrl>https://github.com/portals-me/portals/blob/main/README.md</docsUrl>
+    <bugTrackerUrl>https://github.com/portals-me/portals/issues</bugTrackerUrl>
+    <tags>team collaboration hub internal communication</tags>
+    <summary>Portals is a modern team collaboration hub</summary>
+    <description>Portals is an open-source team collaboration and internal communication platform. It provides a modern hub for teams to collaborate, share information, and communicate internally.
+
+Ideal for organizations looking for a self-hosted alternative to commercial team communication and collaboration platforms.</description>
+    <releaseNotes>https://github.com/portals-me/portals/releases</releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>

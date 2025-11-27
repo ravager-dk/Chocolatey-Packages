@@ -1,0 +1,21 @@
+name: portals test
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'portals/**'
+
+jobs:
+  Test-portals-Package:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: 🦺 Install validation extension
+        run: choco install chocolatey-community-validation.extension -y
+      - name: 📦 Pack Chocolatey Package
+        run: choco pack portals/portals.nuspec
+      - name: 📝 Validate Package
+        run: choco info portals.nupkg
