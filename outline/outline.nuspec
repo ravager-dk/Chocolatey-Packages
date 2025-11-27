@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>outline</id>
+    <version>0.75.2</version>
+    <packageSourceUrl>https://github.com/ravager-dk/Chocolatey-Packages/tree/master/outline</packageSourceUrl>
+    <owners>Martin Nygaard Jensen</owners>
+    <title>Outline</title>
+    <authors>Outline Contributors</authors>
+    <projectUrl>https://www.getoutline.com/</projectUrl>
+    <iconUrl>https://rawcdn.githack.com/outline/outline/main/public/outline-icon.png</iconUrl>
+    <licenseUrl>https://github.com/outline/outline/blob/main/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/outline/outline</projectSourceUrl>
+    <docsUrl>https://docs.getoutline.com/</docsUrl>
+    <bugTrackerUrl>https://github.com/outline/outline/issues</bugTrackerUrl>
+    <tags>wiki documentation knowledge-base team collaboration</tags>
+    <summary>Outline is a modern team knowledge base and wiki</summary>
+    <description>Outline is a beautiful, self-hosted wiki and knowledge base for modern teams. It provides a powerful alternative to expensive solutions like Confluence, offering fast search, flexible permissions, and beautiful document editing.
+
+Perfect for organizations that want to maintain team documentation and knowledge in a modern, searchable environment with full control over their data.</description>
+    <releaseNotes>https://github.com/outline/outline/releases/tag/v0.75.2</releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
