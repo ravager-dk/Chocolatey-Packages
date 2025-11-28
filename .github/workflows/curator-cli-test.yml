@@ -36,8 +36,10 @@ jobs:
           # Verify curator is installed
           & $pythonExe -m pip list | findstr elasticsearch-curator
           
-          # Test curator CLI - use absolute path from Python scripts directory
-          $pythonScriptsPath = (& $pythonExe -c "import site; print(site.USER_SCRIPTS)" | ForEach-Object { $_.Trim() })
-          & "$pythonScriptsPath\curator.exe" --help
+          # Test curator CLI - Scripts directory is typically next to python.exe
+          $pythonDir = Split-Path -Parent $pythonExe
+          $curatorExe = Join-Path $pythonDir "Scripts\curator.exe"
+          Write-Host "Looking for curator at: $curatorExe"
+          & $curatorExe --help
 
 
