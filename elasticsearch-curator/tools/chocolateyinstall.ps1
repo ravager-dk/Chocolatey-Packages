@@ -4,7 +4,7 @@ $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 $sourceDir = Join-Path $toolsDir "curator-9.0.0"
 
 $packageArgs = @{
-    PackageName    = 'curator-cli'
+    PackageName    = 'elasticsearch-curator'
     FileType       = 'zip'
     Url            = 'https://github.com/elastic/curator/archive/refs/tags/v9.0.0.zip'
     ChecksumType   = 'sha256'

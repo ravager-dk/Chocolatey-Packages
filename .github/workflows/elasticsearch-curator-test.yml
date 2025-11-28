@@ -1,14 +1,14 @@
-name: curator_cli test
+name: elasticsearch_curator test
 on:
   workflow_dispatch:
   pull_request:
     branches:
       - master
     paths:
-      - 'curator-cli/**'
+      - 'elasticsearch-curator/**'
 
 jobs:
-  Test-curator_cli-Package:
+  Test-elasticsearch_curator-Package:
     runs-on: windows-latest
     steps:
       - name: Check out repository code
@@ -16,11 +16,11 @@ jobs:
       - name: 🦺 Install validation extension
         run: choco install chocolatey-community-validation.extension -y
       - name: 📦 Pack Chocolatey Package
-        run: choco pack curator-cli/curator-cli.nuspec
+        run: choco pack elasticsearch-curator/elasticsearch-curator.nuspec
       - name: 📝 Validate Package
-        run: choco info curator-cli.nupkg
-      - name: 📥 Install curator-cli package
-        run: choco install curator-cli -y --source "'.;https://community.chocolatey.org/api/v2/'"
+        run: choco info elasticsearch-curator.nupkg
+      - name: 📥 Install elasticsearch-curator package
+        run: choco install elasticsearch-curator -y --source "'.;https://community.chocolatey.org/api/v2/'"
       - name: ✅ Verify Python and curator CLI
         run: |
           # Reload environment to pick up newly installed curator
