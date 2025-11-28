@@ -1,21 +1,21 @@
-name: curator_cli publish
+name: elasticsearch_curator publish
 on:
   workflow_dispatch:
   push:
     branches:
       - master
     paths:
-      - 'curator-cli/**'
+      - 'elasticsearch-curator/**'
 
 jobs:
-  Publish-curator_cli-Package:
+  Publish-elasticsearch_curator-Package:
     runs-on: windows-latest
     steps:
       - run: echo 'The triggering workflow passed'
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: 📦 Pack Chocolatey Package
-        run: choco pack curator-cli/curator-cli.nuspec
+        run: choco pack elasticsearch-curator/elasticsearch-curator.nuspec
       - name: 🔐 Set Chocolatey API-KEY
         run: choco apikey --api-key ${{ secrets.API_KEY }} -source https://push.chocolatey.org/
       - name: 🚀 Push Chocolatey Package

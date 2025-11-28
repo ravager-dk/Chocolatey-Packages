@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
-    <id>curator-cli</id>
+    <id>elasticsearch-curator</id>
     <version>9.0.0</version>
-    <packageSourceUrl>https://github.com/ravager-dk/Chocolatey-Packages/tree/master/curator-cli</packageSourceUrl>
+    <packageSourceUrl>https://github.com/ravager-dk/Chocolatey-Packages/tree/master/elasticsearch-curator</packageSourceUrl>
     <owners>Martin Nygaard Jensen</owners>
     <title>Curator CLI</title>
     <authors>Elastic</authors>
