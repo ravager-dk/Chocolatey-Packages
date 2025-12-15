@@ -1,0 +1,45 @@
+name: elasticsearch_curator test
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'elasticsearch-curator/**'
+
+jobs:
+  Test-elasticsearch_curator-Package:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: 🦺 Install validation extension
+        run: choco install chocolatey-community-validation.extension -y
+      - name: 📦 Pack Chocolatey Package
+        run: choco pack elasticsearch-curator/elasticsearch-curator.nuspec
+      - name: 📝 Validate Package
+        run: choco info elasticsearch-curator.nupkg
+      - name: 📥 Install elasticsearch-curator package
+        run: choco install elasticsearch-curator -y --source "'.;https://community.chocolatey.org/api/v2/'"
+      - name: ✅ Verify Python and curator CLI
+        run: |
+          # Reload environment to pick up newly installed curator
+          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+          
+          # Find the latest available Python version
+          $pythonExe = (py --list-paths 2>$null | Select-Object -First 1 | ForEach-Object { $_ -replace '.*\s+(.*)$', '$1' })
+          Write-Host "Using Python: $pythonExe"
+          
+          # Verify Python version
+          & $pythonExe --version
+          
+          # Verify curator is installed
+          & $pythonExe -m pip list | findstr elasticsearch-curator
+          
+          # Test curator CLI - Scripts directory is typically next to python.exe
+          $pythonDir = Split-Path -Parent $pythonExe
+          $curatorExe = Join-Path $pythonDir "Scripts\curator.exe"
+          Write-Host "Looking for curator at: $curatorExe"
+          & $curatorExe --help
+
+

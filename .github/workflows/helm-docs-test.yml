@@ -1,0 +1,23 @@
+name: helm_docs test
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'helm-docs/**'
+
+jobs:
+  Test-helm_docs-Package:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: 🦺 Install validation extension
+        run: choco install chocolatey-community-validation.extension -y
+      - name: 📦 Pack Chocolatey Package
+        run: choco pack helm-docs/helm-docs.nuspec
+      - name: 🚀 Install Chocolatey Package
+        run: choco install helm-docs -y --debug --verbose --source "'.;https://community.chocolatey.org/api/v2/'"
+      - name: 🚨 Test helm-docs
+        run: helm-docs --version

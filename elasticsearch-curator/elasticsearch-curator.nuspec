@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>elasticsearch-curator</id>
+    <version>9.0.0</version>
+    <packageSourceUrl>https://github.com/ravager-dk/Chocolatey-Packages/tree/master/elasticsearch-curator</packageSourceUrl>
+    <owners>Martin Nygaard Jensen</owners>
+    <title>Curator CLI</title>
+    <authors>Elastic</authors>
+    <projectUrl>https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html</projectUrl>
+    <iconUrl>https://rawcdn.githack.com/elastic/curator/master/docs/source/_static/curator-logo.png</iconUrl>
+    <licenseUrl>https://github.com/elastic/curator/blob/master/LICENSE.txt</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/elastic/curator</projectSourceUrl>
+    <docsUrl>https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html</docsUrl>
+    <bugTrackerUrl>https://github.com/elastic/curator/issues</bugTrackerUrl>
+    <tags>elasticsearch index management automation cli curator</tags>
+    <summary>Curator is a Python CLI tool for managing Elasticsearch indices</summary>
+    <description>Curator is a Python CLI tool that simplifies managing Elasticsearch indices. It allows administrators to curate, delete, optimize, and manage Elasticsearch indices in a time-series fashion.
+
+Essential for DevOps engineers managing large-scale Elasticsearch deployments, Curator automates routine index management tasks including index retention, rollover, snapshotting, and more.</description>
+    <releaseNotes>https://github.com/elastic/curator/releases/tag/v9.0.0</releaseNotes>
+    <dependencies>
+      <dependency id="python" version="3.10" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>

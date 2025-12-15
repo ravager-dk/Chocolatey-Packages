@@ -6,8 +6,3 @@ services:
     - sleep
     - infinity
     init: true
-    volumes:
-    - type: bind
-      source: /var/run/docker.sock
-      target: /var/run/docker.sock
-
