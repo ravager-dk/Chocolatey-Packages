@@ -5,12 +5,12 @@ $releases = 'https://api.github.com/repos/opentofu/opentofu/releases'
 function global:au_SearchReplace {
     @{
         ".\tools\chocolateyinstall.ps1" = @{
-            "(?i)(^\s*url\s*=\s*)([`"'].*[`"'])"       = "`$1`"$($Latest.URL32)`""
-            "(?i)(^\s*checksum\s*=\s*)([`"'].*[`"'])"  = "`$1`"$($Latest.Checksum32)`""
-            "(?i)(^\s*url64\s*=\s*)([`"'].*[`"'])"     = "`$1`"$($Latest.URL64)`""
-            "(?i)(^\s*checksum64\s*=\s*)([`"'].*[`"'])"= "`$1`"$($Latest.Checksum64)`""
+            "(?i)(^\s*url\s*=\s*)([`"'].*[`"'])"        = "`$1`"$($Latest.URL32)`""
+            "(?i)(^\s*checksum\s*=\s*)([`"'].*[`"'])"   = "`$1`"$($Latest.Checksum32)`""
+            "(?i)(^\s*url64\s*=\s*)([`"'].*[`"'])"      = "`$1`"$($Latest.URL64)`""
+            "(?i)(^\s*checksum64\s*=\s*)([`"'].*[`"'])" = "`$1`"$($Latest.Checksum64)`""
         }
-        ".\opentofu.portable.nuspec" = @{
+        ".\opentofu.portable.nuspec"    = @{
             "(?i)(<version>)(.*)(<\/version>)" = "`$1$($Latest.Version)`$3"
         }
     }
@@ -22,7 +22,7 @@ function global:au_GetLatest {
     
     # Filter for stable releases (not pre-release)
     $release = $json | Where-Object { $_.prerelease -eq $false } | Select-Object -First 1
-    $version = $release.tag_name -replace '^v',''
+    $version = $release.tag_name -replace '^v', ''
     
     $url32 = $release.assets | Where-Object { $_.name -like "*windows_386.zip" } | Select-Object -ExpandProperty browser_download_url
     $url64 = $release.assets | Where-Object { $_.name -like "*windows_amd64.zip" } | Select-Object -ExpandProperty browser_download_url
@@ -36,4 +36,4 @@ function global:au_GetLatest {
     }
 }
 
-au_Update
+Update-Package
