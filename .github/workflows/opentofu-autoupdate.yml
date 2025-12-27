@@ -60,6 +60,7 @@ jobs:
 
       - name: Create Pull Request
         if: steps.check_changes.outputs.changes_detected == 'true'
+        shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERSION: ${{ steps.get_version.outputs.version }}
