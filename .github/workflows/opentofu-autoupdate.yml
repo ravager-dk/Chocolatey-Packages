@@ -26,12 +26,14 @@ jobs:
       - name: Run Update Script (Portable)
         shell: powershell
         run: |
+          Import-Module Au
           cd opentofu.portable
           ./update.ps1
           
       - name: Run Update Script (Meta)
         shell: powershell
         run: |
+          Import-Module Au
           cd opentofu
           ./update.ps1
 
