@@ -62,16 +62,34 @@ jobs:
         if: steps.check_changes.outputs.changes_detected == 'true'
         shell: bash
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
           VERSION: ${{ steps.get_version.outputs.version }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
+          # Check if PR already exists
+          EXISTING_PR=$(gh pr list --search "Update OpenTofu to $VERSION" --state open --json number --jq 'length')
+          if [ "$EXISTING_PR" -gt 0 ]; then
+            echo "PR for version $VERSION already exists. Skipping."
+            exit 0
+          fi
+          
           BRANCH_NAME="update-opentofu-$VERSION"
-          git checkout -b $BRANCH_NAME
+          
+          # Check if branch exists remotely
+          if git ls-remote --exit-code --heads origin $BRANCH_NAME; then
+             echo "Branch $BRANCH_NAME already exists remotely."
+             git fetch origin $BRANCH_NAME
+             git checkout $BRANCH_NAME
+             git merge master
+          else
+             git checkout -b $BRANCH_NAME
+          fi
+          
           git add .
-          git commit -m "Update OpenTofu to $VERSION"
+          git commit -m "Update OpenTofu to $VERSION" --allow-empty
           git push origin $BRANCH_NAME
           
+          # Only create PR if it doesn't exist (double check logic handled above, but technically checking creation here)
           gh pr create --title "Update OpenTofu to $VERSION" --body "Automatic update for OpenTofu $VERSION" --base master --head $BRANCH_NAME

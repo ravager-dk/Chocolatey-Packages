@@ -10,6 +10,9 @@ function global:au_SearchReplace {
             "(?i)(^\s*url64\s*=\s*)([`"'].*[`"'])"      = "`$1`"$($Latest.URL64)`""
             "(?i)(^\s*checksum64\s*=\s*)([`"'].*[`"'])" = "`$1`"$($Latest.Checksum64)`""
         }
+        ".\opentofu.portable.nuspec"    = @{
+            "(?i)(<releaseNotes>)(.*)(<\/releaseNotes>)" = "`$1https://github.com/opentofu/opentofu/releases/tag/v$($Latest.Version)`$3"
+        }
     }
 }
 

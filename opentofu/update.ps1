@@ -6,6 +6,7 @@ function global:au_SearchReplace {
     @{
         ".\opentofu.nuspec" = @{
             "(?i)<dependency id=`"opentofu.portable`" version=`"\[.*\]`" />" = "<dependency id=`"opentofu.portable`" version=`"[$($Latest.Version)]`" />"
+            "(?i)(<releaseNotes>)(.*)(<\/releaseNotes>)"                     = "`$1https://github.com/opentofu/opentofu/releases/tag/v$($Latest.Version)`$3"
         }
     }
 }
