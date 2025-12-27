@@ -5,8 +5,7 @@ $releases = 'https://api.github.com/repos/opentofu/opentofu/releases'
 function global:au_SearchReplace {
     @{
         ".\opentofu.nuspec" = @{
-            "(?i)(<version>)(.*)(<\/version>)"                                     = "`$1$($Latest.Version)`$3"
-            "(?i)(<dependency id=`"opentofu.portable`" version=`"\[)(.*)(\]`" />)" = "`$1$($Latest.Version)`$3"
+            "(?i)<dependency id=`"opentofu.portable`" version=`"\[.*\]`" />" = "<dependency id=`"opentofu.portable`" version=`"[$($Latest.Version)]`" />"
         }
     }
 }
