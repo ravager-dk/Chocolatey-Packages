@@ -1,0 +1,77 @@
+name: Zoom VDI Auto-Update
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-update:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Au
+        shell: powershell
+        run: |
+          Install-Module Au -Scope CurrentUser -Force
+
+      - name: Run Update Script (Client)
+        shell: powershell
+        run: |
+          Import-Module Au
+          cd Zoom-VDI-Client
+          ./update.ps1
+          
+      - name: Run Update Script (Universal Plugin)
+        shell: powershell
+        run: |
+          Import-Module Au
+          cd Zoom-VDI-Universal-Plugin
+          ./update.ps1
+
+      - name: Check for changes
+        shell: bash
+        id: check_changes
+        run: |
+          if [[ -n $(git status -s) ]]; then
+            echo "changes_detected=true" >> $GITHUB_OUTPUT
+            echo "Detected changes"
+          else
+            echo "changes_detected=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
+          fi
+
+      - name: Extract Version (Client)
+        if: steps.check_changes.outputs.changes_detected == 'true'
+        shell: powershell
+        id: get_version
+        run: |
+          $xml = [xml](Get-Content Zoom-VDI-Client/zoom-vdi-client.nuspec)
+          $version = $xml.package.metadata.version
+          echo "version=$version" >> $env:GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        if: steps.check_changes.outputs.changes_detected == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.get_version.outputs.version }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          BRANCH_NAME="update-zoom-vdi-$VERSION"
+          git checkout -b $BRANCH_NAME
+          git add .
+          git commit -m "Update Zoom VDI to $VERSION"
+          git push origin $BRANCH_NAME
+          
+          gh pr create --title "Update Zoom VDI to $VERSION" --body "Automatic update for Zoom VDI $VERSION" --base master --head $BRANCH_NAME
