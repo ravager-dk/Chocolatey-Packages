@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
-    <id>zoom-vdi-client</id>
-    <version>6.6.10.26830</version>
+    <id>Zoom-VDI-Client</id>
+    <version>6.6.11.26890</version>
     <owners>Martin Nygaard Jensen</owners>
     <title>Zoom VDI Client</title>
     <authors>Zoom Video Communications, Inc</authors>
