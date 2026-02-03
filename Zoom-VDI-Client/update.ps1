@@ -5,8 +5,8 @@ $releases = 'https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0
 function global:au_SearchReplace {
     @{
         ".\tools\chocolateyinstall.ps1" = @{
-            '(?i)(^\s*\$url\s*=\s*).*'      = "`$1'$($Latest.URL32)'"
-            '(?i)(^\s*checksum64\s*=\s*).*' = "`$1'$($Latest.Checksum32)'"
+            '(?i)(^\s*\$url\s*=\s*).*'      = "`$1'$($Latest.URL64)'"
+            '(?i)(^\s*checksum64\s*=\s*).*' = "`$1'$($Latest.Checksum64)'"
         }
         ".\zoom-vdi-client.nuspec"      = @{
             "(?i)(<version>).*(</version>)" = "`$1$($Latest.Version)`$2"
@@ -30,7 +30,7 @@ function global:au_GetLatest {
         
         return @{
             Version = $version
-            URL32   = $url
+            URL64   = $url
         }
     }
     else {
@@ -38,4 +38,4 @@ function global:au_GetLatest {
     }
 }
 
-Update-Package -ChecksumFor 32
+Update-Package -ChecksumFor 64
