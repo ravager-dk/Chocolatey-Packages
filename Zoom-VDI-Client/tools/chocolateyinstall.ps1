@@ -1,7 +1,7 @@
 ﻿
 $ErrorActionPreference = 'Stop'
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url      = 'https://zoom.us/download/vdi/6.6.14.26970/ZoomInstallerVDI.msi?archType=x64'
+$url      = 'https://zoom.us/download/vdi/7.0.10.26980/ZoomInstallerVDI.msi?archType=x64'
 
 $packageArgs = @{
   packageName    = $env:ChocolateyPackageName
@@ -10,7 +10,7 @@ $packageArgs = @{
   url64          = $url
   softwareName   = 'Zoom Client for VDI*'
 
-  checksum64     = 'efe3542efe9011ae3604b497b021b56ee8b7e2fffd14cc2b88f917e4ddfc661d'
+  checksum64     = 'f7062c14f15f3121411837ca6139785bacbd7a4c5c98c484f5b58cb11362782e'
   checksumType64 = 'sha256'
 
   silentArgs     = "/qn /norestart /l*v `"$($env:TEMP)\$($packageName).$($env:chocolateyPackageVersion).MsiInstall.log`" DISABLEAUS=TRUE"
