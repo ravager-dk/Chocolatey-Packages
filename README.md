@@ -1,3 +1,5 @@
+NOTICE: AS OF 2026-09-11 this repository is no longer maintained and set to archived.
+
 # Chocolatey-Packages
 Publicly published Chocolately packages 
 
